@@ -5,6 +5,13 @@ nixpkgs = "python311"
 [build.env]
 PYTHON_VERSION = "3.11"
 NIXPACKS_PYTHON_VERSION = "3.11"
+NIXPACKS_INSTALL_CMD = "pip install --no-cache-dir -r requirements-railway.txt"
+NIXPACKS_BUILD_CMD = "echo 'Lightweight build complete'"
+
+# Memory and disk optimizations
+[build.resources]
+memory = "2GB"
+disk = "4GB"
 
 [deploy]
 startCommand = "python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
