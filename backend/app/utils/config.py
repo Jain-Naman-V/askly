@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     vector_dimension: int = 1536
     search_limit: int = 50
     similarity_threshold: float = 0.7
+    max_search_results: int = 100
     
     # Security
     secret_key: str = "your_secret_key_here_change_in_production"
@@ -48,9 +49,13 @@ class Settings(BaseSettings):
     rate_limit_per_minute: int = 60
     rate_limit_per_hour: int = 1000
     
+    # Environment
+    environment: str = "development"
+    
     class Config:
         env_file = ".env"
         case_sensitive = False
+        extra = "ignore"  # Ignore extra fields instead of raising errors
 
 @lru_cache()
 def get_settings() -> Settings:
